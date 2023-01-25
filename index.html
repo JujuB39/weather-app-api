@@ -1,1 +1,33 @@
-gfkggormjinrt
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=1.0, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <header class = weather-dashboard>
+        <h1> Weather Dashboard</h1> 
+    </header>
+    
+    <form class="form" action="/form/submit" method="GET">
+        <h2 class="city-search"> Search for a City</h2>
+        <input type="text" name="text" class="search" placeholder="Search for a City">
+        <input type="submit" name="submit" class="submit" value="Search">
+    </form>
+    <div class="forecast">
+    </div>
+
+    <div class="past-search"></div>
+    <div class="five-day-forecast"></div>
+
+    <!-- Need a spotr for current conditions (city, date , icon,temp. humidity, wind speed) -->
+    <!-- Need a spot for search history -->
+        <!-- search history needs to return you back to the city -->
+    <!-- future conditions 5 day forecast(icon represent weather condition, temp, wind speed, humidity) -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="./script.js"></script>
+</html>

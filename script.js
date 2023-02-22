@@ -59,15 +59,59 @@ function getForecast (cityName) {
         currentForecast.append(humidity);
         currentForecast.append(windspeed);
         currentForecast.append(icon);
-
+        getFiveDayForecast(data.coord.lat, data.coord.lon)
     });
+}
+
+function getFiveDayForecast (latitude, longitude) {
+    fetch("https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + apikey)
+
+    .then(function(response) {
+        return response.json()
+    })
+
+    .then(function(data) {
+        [dayOne, dayTwo, dayThree, dayFour, dayFive].forEach((day) => {
+            var dateHeader = document.createElement("h4");
+            var icon = document.createElement("img");
+            var temperature = document.createElement("p");
+            var humidity = document.createElement("p");
+            var windspeed = document.createElement("p");
+
+            dateHeader.textContent = currentDate
+            icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+            temperature.textContent = `Temperature: ${data.main.temp} °F`
+            humidity.textContent = `Humidity: ${data.main.humidity} %`;
+            windspeed.textContent = `Windspeed: ${data.wind.speed} MPH`;
+
+        })
 
 
-      // can use the following for 5 day forecast 
-      //const url
-      // const result
-      //var latitutde = data.city.coord.lat
-      //var longitude = data.city.coord.lon
+
+        
+        
+
+        // //append to current weather
+        // currentForecast.append(cityHeader);
+        // currentForecast.append(dateHeader);
+        // currentForecast.append(temperature);
+        // currentForecast.append(humidity);
+        // currentForecast.append(windspeed);
+        // currentForecast.append(icon);
+
+    })
+}
+//FOr future 5 day forecasts
+// var cityandDateHeader = document.createElement("h3");
+// var icon = document.createElement("img");
+// var temperature = document.createElement("p");
+// var Humidity = document.createElement("p");
+// var Windspeed = document.createElement("p"); 
+      //Need  /date 
+        // Need Icon representation
+        // Need Temp
+        //Need Humidity
+        // Need wind speed 
 
       //is it possible to loop through each data in the dom and create the same elements ASK????
       
@@ -78,20 +122,25 @@ function getForecast (cityName) {
         //Need City Name (name) /date 
             
         // Need Icon representation
-            //list.weather.icon
+            //weather[0].icon
         // Need Temp
-            //list.main.temp
+            //data.main.temp
         //Need Humidity
-            //list.main.humidity
+            //data.main.humidity
         // Need wind speed 
-            //list.wind.speed
+            //data.wind.speed
 
 
 
         //Create Elements needed 
 
         //var city = 
-}
+
+
+
+
+
+
 function handleSearch() {
     getForecast(inputEl.value);
 }
@@ -110,16 +159,6 @@ function handleSearch() {
 //function to renderpastcities 
 
 
-//FOr future 5 day forecasts
-// var cityandDateHeader = document.createElement("h3");
-// var icon = document.createElement("img");
-// var temperature = document.createElement("p");
-// var Humidity = document.createElement("p");
-// var Windspeed = document.createElement("p"); 
-      //Need  /date 
-        // Need Icon representation
-        // Need Temp
-        //Need Humidity
-        // Need wind speed 
+
 
 form.addEventListener('submit', formSubmit)

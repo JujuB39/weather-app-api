@@ -1,60 +1,66 @@
 // Gathering all elements needed from HTML 
 var inputEl = document.querySelector(".search");
+var submit = document.querySelector(".submit");
 var form = document.querySelector(".form");
 var apikey = "eaeb1de27b6bfa327763903032ee3804";
 var currentForecast = document.querySelector('.forecast');
 var fiveDayForecast = document.querySelector('.five-day-forecast');
-//maybe have something in here for each day 
+var dayOne = document.getElementById("day-one");
+var dayTwo = document.getElementById("day-two");
+var dayThree = document.getElementById("day-three");
+var dayFour = document.getElementById("day-four");
+var dayFive = document.getElementById("day-five");
 var pastSearch = document.querySelector('.past-search');
-var currentDate = moment().format();
-
+var currentDate = moment().format('MMM DD YYYY, hh:mm A');
 
 // search Information
-var cityName = inputEL.value;
+var cityName = '';
+console.log(cityName)
 
+// Store city name into Search History local storage, pushing in citynames to local storage
 var formSubmit = function (event) {
     event.preventDefault();
     //Get search value 
-    var cityName = inputEl.value;
+     // pastSearch.push(cityName)
+    // localStorage.getItem('Previous Search', JSON.stringify(pastSearch))
+    // localStorage.getItem("City", cityName)
     // Store city name into Search History local storage
-
-
+    handleSearch()
 }
 
-//feth api
-function getForecast (event) {
-    fetch("http://api.openweathermap.org/geo/1.0/direct?q=" + inputEl + "&limit=1&appid=" + apikey)
+//fetch api
+function getForecast (cityName) {
+    fetch("http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apikey)
 
     .then(function(response) {
         return response.json()
     })
 
     .then(function(data) {
-        console.log(data.results)
+        currentForecast.innerHTML = "";
+        var cityHeader = document.createElement("h3");
+        var dateHeader = document.createElement("h4");
+        var icon = document.createElement("img");
+        var temperature = document.createElement("p");
+        var humidity = document.createElement("p");
+        var windspeed = document.createElement("p");
 
-      })
+        cityHeader.textContent = cityName.toUpperCase()
+        dateHeader.textContent = currentDate
+        icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+        temperature.textContent = `Temperature: ${data.main.temp} °F`
+        humidity.textContent = `Humidity: ${data.main.humidity} %`;
+        windspeed.textContent = `Windspeed: ${data.wind.speed} MPH`;
 
-      currentForecast.innerHTML = "";
-      var cityHeader = document.createElement("h3");
-      var dateHeader = document.createElement("h4");
-      var icon = document.createElement("img");
-      var temperature = document.createElement("p");
-      var humidity = document.createElement("p");
-      var windspeed = document.createElement("p");
+        //append to current weather
+        currentForecast.append(cityHeader);
+        currentForecast.append(dateHeader);
+        currentForecast.append(temperature);
+        currentForecast.append(humidity);
+        currentForecast.append(windspeed);
+        currentForecast.append(icon);
 
-      cityHeader.textContent = 
-      dateHeader.textContent =
-      icon.src = `\\url + data.list[0].weather.icon + finish url` 
-      temperature.textContent = `Temperature: ${data.list[0].main.temp} °F`
-      humidity.textContent = `Humidity: ${data.list[0].main.humidity} %`;
-      windspeed.textContent = `Windspeed: ${data.list[0].wind.speed} MPH`;
-
-      //Maybe append to current weather
-      currentForecast.append(cityHeader);
-      currentForecast.append(dateHeader);
-      currentForecast.append(temperature);
-      currentForecast.append(humidity);
-      currentForecast.append(windspeed);
+    });
 
 
       // can use the following for 5 day forecast 
@@ -85,8 +91,11 @@ function getForecast (event) {
         //Create Elements needed 
 
         //var city = 
-    }
 }
+function handleSearch() {
+    getForecast(inputEl.value);
+}
+
 
    
 // function for search handler
@@ -113,4 +122,4 @@ function getForecast (event) {
         //Need Humidity
         // Need wind speed 
 
-// inputEl.addEventListener('search', formSubmit)
+form.addEventListener('submit', formSubmit)

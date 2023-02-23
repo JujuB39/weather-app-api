@@ -55,7 +55,7 @@ function getForecast (cityName) {
         cityHeader.textContent = cityName.toUpperCase()
         dateHeader.textContent = currentDate
         icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-        temperature.textContent = `Temperature: ${data.main.temp} °F`
+        temperature.textContent = `Temperature: ${Math.trunc((data.main.temp -273.15) * 1.8 +32)} °F`
         humidity.textContent = `Humidity: ${data.main.humidity} %`;
         windspeed.textContent = `Windspeed: ${data.wind.speed} MPH`;
 
@@ -88,7 +88,7 @@ function getFiveDayForecast (latitude, longitude) {
 
             dateHeader.textContent = data.list[i].dt_txt.split(" ")[0];
             icon.src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`
-            temperature.textContent = `Temperature: ${data.list[i].main.temp} °F`
+            temperature.textContent = `Temperature: ${Math.trunc((data.list[i].main.temp - 273.15) * 1.8 +32)} °F`
             humidity.textContent = `Humidity: ${data.list[i].main.humidity} %`;
             windspeed.textContent = `Windspeed: ${data.list[i].wind.speed} MPH`;
 

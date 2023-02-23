@@ -1,0 +1,63 @@
+h1 {
+    padding-left: 500px;
+}
+main {
+    display: flex;
+    align-items: center;
+}
+
+.forecast {
+    border: 20px;
+    border-style: solid;
+    border-width: 1px;
+    align-items: stretch;
+    padding-right: 800px;
+    padding-left: 50px;
+   
+}
+
+.five-day-forecast {
+    display: flex;
+    margin: 40px;
+    justify-content: space-between;
+}
+
+#day-one {
+    border: 1px;
+    border-style: solid;
+    padding: 20px;
+    color: antiquewhite;
+    background-color: darkblue;
+}
+
+#day-two {
+    border: 1px;
+    border-style: solid;
+    padding: 20px;
+    color: antiquewhite;
+    background-color: darkblue;
+}
+
+#day-three {
+    border: 1px;
+    border-style: solid;
+    padding: 20px;
+    color: antiquewhite;
+    background-color: darkblue;
+}
+
+#day-four {
+    border: 1px;
+    border-style: solid;
+    padding: 20px;
+    color: antiquewhite;
+    background-color: darkblue;
+}
+
+#day-five {
+    border: 1px;
+    border-style: solid;
+    padding: 20px;
+    color: antiquewhite;
+    background-color: darkblue;
+}
